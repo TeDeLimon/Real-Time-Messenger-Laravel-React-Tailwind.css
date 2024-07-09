@@ -29,6 +29,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        // This is a shared prop for every page 
         return [
             ...parent::share($request),
             'auth' => [
