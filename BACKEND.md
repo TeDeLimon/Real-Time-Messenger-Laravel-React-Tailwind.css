@@ -76,6 +76,12 @@ php artisan:install broadcasting
 yes
 ```
 
+#### It's neccesary to have laravel-echo and pusher.js installed as a dependency
+[Broadcasting](https://laravel.com/docs/11.x/broadcasting)
+```bash
+npm install --save-dev laravel-echo pusher-js
+```
+
 #### Let's start create the database (-m indicates that migration file will be installed as well)
 ```bash
 php artisan make:model `name_of_table` -m
@@ -94,4 +100,20 @@ php artisan make:factory `nameFactory`
 ```bash
 php artisan migrate:fresh --seed
 ```
+#### Now, it's time to create the controllers and routes
+```bash
+php artisan make:controller `NameController`
+```
 
+#### In the file web.php we have the routes
+
+#### To start the Vite development enviroment run the next command:
+```bash
+npm run dev
+```
+
+#### To start the Laravel Reverb server run the next command:
+```bash
+php artisan reverb:start --debug
+```
+This command will start a server on 0.0.0.0:8080
