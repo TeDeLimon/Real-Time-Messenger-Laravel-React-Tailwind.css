@@ -30,7 +30,9 @@ class MessageFactory extends Factory
             $receiver_id = 1;
         } else {
 
-            $receiver_id = $this->faker->randomElement(\App\Models\User::pluck('id')->toArray());
+            $receiver_id = $this->faker
+                ->randomElement(\App\Models\User::where('id', '!=', 1)
+                    ->pluck('id')->toArray());
         }
 
         $group_id = null;
