@@ -69,7 +69,8 @@ npm install uui
 #### Now it's turn to install broadcasting what will install laravel reverb.
 When a client connects to a socket server it will recieve realtime updates regarding certain things.
 ```bash
-php artisan:install broadcasting
+php artisan install:broadcasting
+composer require laravel/reverb
 ```
 #### We are gonna use broadcasting so enter yes and after that yes to install Node dependencies 
 ```bash
@@ -117,3 +118,8 @@ npm run dev
 php artisan reverb:start --debug
 ```
 This command will start a server on 0.0.0.0:8080
+
+#### To create a resource run the next command (a resource is a ):
+```bash
+php artisan make:resource `NameResource`
+```
