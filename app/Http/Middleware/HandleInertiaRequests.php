@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
 use Inertia\Middleware;
+use App\Models\Conversation;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -30,11 +32,13 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         // This is a shared prop for every page 
+        // Conversations are only shared if the user is authenticated
         return [
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
             ],
+            'conversations' => Auth::id() ? Conversation::getConversationsForSidebar(Auth::user()) : []
         ];
     }
 }

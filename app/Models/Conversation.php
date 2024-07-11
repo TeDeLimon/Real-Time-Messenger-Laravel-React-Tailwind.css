@@ -38,4 +38,23 @@ class Conversation extends Model
     {
         return $this->belongsTo(User::class, 'user_id2');
     }
+
+    /**
+     * Get conversations for the sidebar for an authenticated user
+     * 
+     * @param User $user The authenticated user
+     * 
+     * @return Collection The conversations for the sidebar
+     */
+    public static function getConversationsForSidebar(User $user)
+    {
+        // Get all users where the current user is involved in a conversation
+        $users = User::getUsersExceptUser($user);
+        // Get all groups where the current user is a member
+        $groups = Group::getGroupsForUser($user);
+
+        return $users
+            ->map(fn (User $user) => $user->toConversationArray())
+            ->concat($groups->map(fn (Group $group) => $group->toConversationArray()));
+    }
 }
